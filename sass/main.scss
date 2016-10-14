@@ -54,7 +54,11 @@ i.fa {
 .table > tbody > tr > td {
 	border: 1px solid rgba(0, 0, 0, 0.25);
 	padding: 5px;
-	vertical-align: middle!important;;
+	vertical-align: middle!important;
+}
+.table > thead > tr > th.valign-top,
+.table > tbody > tr > td.valign-top {
+	vertical-align: top!important;
 }
 .table > thead > tr > th.first {
 	border-top-width: 0!important;
@@ -255,6 +259,7 @@ td.col-group.person > .row-text {
 	font-size: 18px;
 	text-align: center;
 	line-height: 48px;
+	white-space: nowrap;
 }
 
 td.person > .row-text {

@@ -6,19 +6,7 @@
                 "id": 6543, 
                 "name": "Ella Cunningham", 
                 "title": "Manager", 
-                "los": [{ 
-                        "id": "welcome-1", 
-                        "value": 2, 
-                        "segmentId": "welcome-to-dd" 
-                    }, {
-                        "id": "welcome-2",
-                        "value": 1,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
-                        "id": "welcome-3",
-                        "value": 0,
-                        "segmentId": "welcome-to-dd" 
-                    },{
+                "los": [{
                         "id": "guest-services-1",
                         "value": 2,
                         "segmentId": "guest-services" 
@@ -40,18 +28,6 @@
                 "name": "Max Garcia",
                 "title": "Crew Member",
                 "los": [{
-                        "id": "welcome-1",
-                        "value": 0,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
-                        "id": "welcome-2",
-                        "value": 1,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
-                        "id": "welcome-3",
-                        "value": 2,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
                         "id": "guest-services-1",
                         "value": 2,
                         "segmentId": "guest-services" 
@@ -67,14 +43,6 @@
                         "id": "guest-services-4",
                         "value": 0,
                         "segmentId": "guest-services" 
-                    }, {
-                        "id": "crew-only-1",  
-                        "value": 1,
-                        "segmentId": "crew-only"
-                    }, {
-                        "id": "crew-only-2",
-                        "value": 1,
-                        "segmentId": "crew-only"
                     }]
                 }]
             
@@ -86,14 +54,6 @@
                 "name": "John Doe",
                 "title": "Manager",
                 "los": [{
-                        "id": "welcome-1",
-                        "value": 1,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
-                        "id": "welcome-2",
-                        "value": 0,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
                         "id": "welcome-3",
                         "value": 0,
                         "segmentId": "welcome-to-dd" 
@@ -119,18 +79,6 @@
                 "name": "Michael McDonald",
                 "title": "Crew Member",
                 "los": [{
-                        "id": "welcome-1",
-                        "value": 2,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
-                        "id": "welcome-2",
-                        "value": 1,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
-                        "id": "welcome-3",
-                        "value": 0,
-                        "segmentId": "welcome-to-dd" 
-                    }, {
                         "id": "guest-services-1",
                         "value": 2,
                         "segmentId": "guest-services" 
@@ -151,23 +99,7 @@
 
         }], 
 
-    "segments": [{ 
-            "id": "welcome-to-dd", 
-            "name": "Welcome to Dunkin' Donuts!", 
-            "los": [{ 
-                    "id": "welcome-1", 
-                    "name": "Introduction", 
-                    "type": "Video" 
-                }, {
-                    "id": "welcome-2",
-                    "name": "History",
-                    "type": "Video"
-                }, {
-                    "id": "welcome-3",
-                    "name": "Future",
-                    "type": "Video"
-                }]
-        }, {
+    "segments": [{
             "id": "guest-services",
             "name": "Guest Services",
             "los": [{
@@ -186,22 +118,6 @@
                     "id": "guest-services-4",
                     "name": "Meeting Guest Expectations",
                     "type": "Online Class"
-                }]
-        }, {
-            "id": "crew-only",
-            "name": "Crew only",
-            "los": [{
-                    "id": "crew-only-1",
-                    "name": "Crew Beginners",
-                    "type": "Video"
-                }, {
-                    "id": "crew-only-2",
-                    "name": "Crew Intermediary",
-                    "type": "Video"
-                }, {
-                    "id": "crew-only-3",
-                    "name": "Crew Advanced",
-                    "type": "Video"
                 }]
         }] 
 }

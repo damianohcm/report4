@@ -9,26 +9,30 @@
 
     /* private */
     var undoAction = function(action, isDetailView) {
-        var item = action.item;
+        if (action && action.item) {
+            var item = action.item;
 
-        _.each(action.properties, function(prop) {
-            if (action.type === 'column') {
-                // in detail view, undo all properties
-                if (isDetailView) {
-                    undoItemProperty(action.item, prop.name, prop.oldValue);
-                } else {
-                    // in top level view, undo only show when isGroup, and only calculate when isChild
-                    if (item.isGroup) {
+            _.each(action.properties, function(prop) {
+                if (action.type === 'column') {
+                    // in detail view, undo all properties
+                    if (isDetailView) {
                         undoItemProperty(action.item, prop.name, prop.oldValue);
-                    } else if (item.isChild && prop.name === 'calculate') {
-                        undoItemProperty(action.item, prop.name, prop.oldValue);
+                    } else {
+                        // in top level view, undo only show when isGroup, and only calculate when isChild
+                        if (item.isGroup) {
+                            undoItemProperty(action.item, prop.name, prop.oldValue);
+                        } else if (item.isChild && prop.name === 'calculate') {
+                            undoItemProperty(action.item, prop.name, prop.oldValue);
+                        }
                     }
+                    
+                } else {
+                    undoItemProperty(action.item, prop.name, prop.oldValue);
                 }
-                
-            } else {
-                undoItemProperty(action.item, prop.name, prop.oldValue);
-            }
-        });
+            });
+        } else {
+            console.log('undoService.undoAction: Warning: invalid action or action.item');
+        }
     };
 
     /**
@@ -69,42 +73,6 @@
                 this.undoLastAction(isDetailView);
             }
         }.bind(this);
-
-        // /**
-        //  * @method purgeColumnsFromHistory
-        //  * @dscription
-        //  * Removes columns from undo history
-        //  */
-        // this.purgeColumnsFromHistory = function() {
-        //     var purgedState = [];
-        //     _.each(this.undoState, function(action) {
-        //         // only purge columns for which property changed is not 'calculate'
-        //         if (action.type === 'column') {
-        //             var hasCalculate = _.some(action.properties, function(p) {
-        //                 return p.name === 'calculate';
-        //             });
-
-        //             if (hasCalculate) {
-        //                 action.properties = _.filter(action.properties, function(p) {
-        //                     return p.name !== 'calculate';
-        //                 });
-                        
-        //                 _.each(action.properties, function(prop) {
-        //                     undoItemProperty(action.item, prop.name, prop.oldValue);
-        //                     action.msg = 'Hide column ' + action.item.name;
-        //                 });
-
-        //                 purgedState.push(action);
-        //             } else {
-        //                 undoAction(action);
-        //             }
-        //         } else {
-        //             purgedState.push(action);
-        //         }
-        //     });
-
-        //     this.undoState = purgedState;
-        // }.bind(this);
 
         /**
          * @method stateExists

@@ -4,7 +4,7 @@
 	window.controllers = window.controllers || {};
   
     window.controllers.reportController = function($scope, utilsService, undoServiceFactory, dataService, reportService, $timeout, $interval) {
-		$scope.title = '';//report Controller';
+		$scope.title = 'New and Trending';
 
 		$scope.undoService = undoServiceFactory.getService('reportController');
 
@@ -15,27 +15,29 @@
 		$scope.undoLastAction = function() {
 			var action = $scope.undoService.undoLastAction($scope.isDetailView());
 
-			// keep row collapsed when undoing rows
-			if (action.type === 'row' && !action.item.isChild && !action.item.isCollapsed) {
-				action.item.isCollapsed = true;
+			if (action) {
+				// keep row collapsed when undoing rows
+				if (action.type === 'row' && !action.item.isChild && !action.item.isCollapsed) {
+					action.item.isCollapsed = true;
+				}
+
+				// // expand parent row if any and currently collapsed
+				// if (action.type === 'row' && action.item.isChild) {
+				// 	var parent = _.find($scope.model.result.rows, function(row) {
+				// 		return row.id === action.item.parentId;
+				// 	});
+				// 	if (parent && parent.isCollapsed) {
+				// 		parent.isCollapsed = false;
+				// 	}
+				// }
+
+				$scope.recalculate();
 			}
-
-			// // expand parent row if any and currently collapsed
-			// if (action.type === 'row' && action.item.isChild) {
-			// 	var parent = _.find($scope.model.result.rows, function(row) {
-			// 		return row.id === action.item.parentId;
-			// 	});
-			// 	if (parent && parent.isCollapsed) {
-			// 		parent.isCollapsed = false;
-			// 	}
-			// }
-
-			$scope.recalculate();
 		};
 
 		$scope.undoAllActions = function() {
 			$scope.undoService.undoAllActions($scope.isDetailView());
-			$scope.backToTopLevel();
+			$scope.recalculate();
 		};
 
 		$scope.modifiedMessage = function() {
@@ -147,10 +149,6 @@
 			}
 		};
 
-		$scope.colHeaderPopover = {
-			templateUrl: 'colHeaderPopoverTemplate.html'
-		};
-
 		$scope.visibleColumns = function(isGroup) {
 			return _.filter($scope.model.columns, function(col) {
 				return col.isGroup === isGroup && col.show;
@@ -162,38 +160,6 @@
 			$scope.model.topLevelColumn = $scope.topLevelColumn;
 			reportService.recalculate($scope.model);
 		};
-
-		var onDataError = function(err) {
-			utilsService.safeLog('reportController.onDataError', err);
-			$scope.error = 'Could not fetch data';
-		};
-
-		var onDataComplete  = function(data) {
-			utilsService.safeLog('reportController.onDataComplete', data);
-			$scope.data = data;
-			$scope.model = reportService.getModel(data);
-
-			// then rowGroups after angular bindings
-			$timeout(function(){
-				utilsService.safeLog('add');
-				var rowGroups = $scope.model.result._rowGroups;
-				var intervalId = $interval(function() {
-					if (rowGroups.length > 0) {
-						utilsService.safeLog('add row');
-						$scope.model.result.rows.push(rowGroups.pop());
-					} else {
-						utilsService.safeLog('clearInterval');
-						$interval.cancel(intervalId);
-					}
-				}, 20);
-			}, 0);
-		};
-
-		//var fileName = 'report.json?' + Math.random();
-		//var fileName = 'report-generated1.json?' + Math.random();
-		var fileName = 'report-generated2.json?' + Math.random();
-		dataService.getData(fileName)
-			.then(onDataComplete, onDataError);
 		
 		$scope.toggleChildRows = function(model, row) {
 			utilsService.safeLog('toggleChildRows', row.children.length);
@@ -411,6 +377,44 @@
 		$scope.flashCss = function(css, value, hidden, first) {
 			return css + ' ' + value + (hidden? ' hidden' : '') + (first? ' first' : '');
 		};
+
+		// data helpers
+		var onDataError = function(err) {
+			utilsService.safeLog('reportController.onDataError', err);
+			$scope.error = 'Could not fetch data';
+		};
+
+		var onDataComplete  = function(data) {
+			utilsService.safeLog('reportController.onDataComplete', data);
+			$scope.data = data;
+			$scope.model = reportService.getModel(data);
+
+			// expand first colGroup. "New and Tranding" will have only one colGroup
+			var firstColGroup = _.find($scope.model.columns, function(col) {
+				return col.isGroup;
+			});
+			$scope.expandChildColumns(firstColGroup);
+
+			// then rowGroups after angular bindings
+			$timeout(function(){
+				utilsService.safeLog('add');
+				var rowGroups = $scope.model.result._rowGroups;
+				var intervalId = $interval(function() {
+					if (rowGroups.length > 0) {
+						utilsService.safeLog('add row');
+						$scope.model.result.rows.push(rowGroups.pop());
+					} else {
+						utilsService.safeLog('clearInterval');
+						$interval.cancel(intervalId);
+					}
+				}, 20);
+			}, 0);
+		};
+
+		//var fileName = 'report.json?' + Math.random();
+		var fileName = 'report-generated1.json?' + Math.random();
+		dataService.getData(fileName)
+			.then(onDataComplete, onDataError);
 	};
 
 }());

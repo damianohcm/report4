@@ -582,7 +582,7 @@
 					position:  0,
 					show: true,
 					locked: true,
-					css: 'th-category',
+					css: 'th-category first',
 					name:  ''
 				}, {
 					id: 'summary',
@@ -602,7 +602,7 @@
 			// 1. Add to model.columns collection
 			// loop through each course and add a column for each course
 			utilsService.fastLoop(data.segments, function(course, colGroupPosition) {
-				
+
 				// group cell
 				var colGroup = {
 					isGroup: true,
@@ -612,7 +612,7 @@
 					position:  model.columns.length,
 					groupPosition: colGroupPosition,
 					locked: false,
-					css: 'th-course',
+					css: 'th-course valign-top',
 					name: course.name
 				};
 
@@ -630,7 +630,7 @@
 						position:  model.columns.length,
 						locked: false,
 						calculate: true, /* by default child columns are calculated when hidden, unless specifically hidden by user action, in which case calculate is also set to false */
-						css: 'th-section',
+						css: 'th-section valign-top',
 						name: section.name
 					};
 
