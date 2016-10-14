@@ -1,41 +1,8 @@
-@import 'imported';
-
-$dunkinBrand: #e49;
-$dunkinBrandOver: #1F429B;
-
-$category: #F0E0C6;
-
-$completedGroup: #AEE874;
-$inprogressGroup: #E8DC74;
-$zeroGroup: #E8E8E8;
-$naGroup: #E8E8E8;
-
-$inprogressGroupSummary: #CFBA00;
-$completedGroupSummary: #60BF00;
-$zeroGroupSummary: #BFBFBF;
-$naGroupSummary: #BFBFBF;
-
-$completedChildSummary: #AEE874;
-$inprogressChildSummary: #E8DC74;
-$zeroChildSummary: #E8E8E8;
-$naChildSummary: #E8E8E8;
-
-$completed: #D5FFAB;
-$inprogress: #FFF7AB;
-$zero: #FFF;
-$na: #FFF;
-
-$black: #000;
-$orange: #FF8000;
-$brown: #693900;
-$lightbrown: #BE854C;
-
-$blue: #3bbfce;
-$margin: 16px;
+@import 'variables';
 
 body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	background: black; 
+	background-color: transparent; 
 }
 
 .clear {
@@ -43,7 +10,7 @@ body {
 }
 
 .pointer {
-	cursor:pointer!important;
+	cursor: pointer!important;
 }
 
 .m-l-sm {
@@ -74,7 +41,6 @@ i.fa {
 	font-size:14pt;
 	color: $orange;	
 }
-
 
 .table > thead:first-child > tr:first-child > th {
 	border-top: solid 1px rgba(0, 0, 0, 0.5);
@@ -387,23 +353,15 @@ div.height-40 {
 	border-radius: 8px;
 }
 
-@media (min-width: 1201px) {
-	.container {
-		width: 97%;
-	}
-}
-@media (max-width: 1200px) {
-	.container {
-		width: 1170px;
-	}
-}
+@media (min-width: 1200px) {
+  .container {
+    width: 1350px;
+    max-width: 1350px; } }
+
 @media (max-width: 992px) {
-	.container {
-		width: 970px;
-	}
-}
+  .container {
+    width: 970px; } }
+
 @media (max-width: 768px) {
-	.container {
-		width: 750px;
-	}
-}
+  .container {
+    width: 750px; } }
