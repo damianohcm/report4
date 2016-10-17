@@ -7,6 +7,11 @@
 		$scope.reportTitle = 'New and Trending';
 		$scope.title = $scope.reportTitle + ' Report';
 
+		console.log('Controller $scope.brand and lang', {
+			brand: $scope.brand,
+			lang: $scope.lang,
+		});
+
 		$scope.undoService = undoServiceFactory.getService('reportController');
 
 		$scope.isDetailView = function() {
