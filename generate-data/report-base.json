@@ -486,38 +486,30 @@
     }],
 
     "segments": [{
-        "id": "guest-services",
-        "name": "Guest Service",
+        "id": "new-and-trending",
+        "name": "New and Trending",
         "los": [{
-            "id": "guest-services-1",
-            "name": "Guest First Commitment",
+            "id": "new-and-trending-1",
+            "name": "Halloween Specials",
             "type": "Video"
         }, {
-            "id": "guest-services-2",
-            "name": "The Six Steps of Guest Services",
+            "id": "new-and-trending-2",
+            "name": "Thanksgiving Specials",
             "type": "Video"
         }, {
-            "id": "guest-services-3",
-            "name": "Serving Guests with Disabilities",
+            "id": "new-and-trending-3",
+            "name": "Christmas Specials",
             "type": "Video"
         }, {
-            "id": "guest-services-4",
-            "name": "Meeting Guest Expectations",
+            "id": "new-and-trending-4",
+            "name": "Northern Stores Only",
             "type": "Video"
         }, {
-            "id": "guest-services-5",
-            "name": "L.A.S.T. Resolution",
+            "id": "new-and-trending-5",
+            "name": "Managing Holidays Expectations",
             "type": "Video"
         }, {
-            "id": "guest-services-6",
-            "name": "Best in Class Guest Service",
-            "type": "Video"
-        }, {
-            "id": "guest-services-7",
-            "name": "Voice of the Guest",
-            "type": "Video"
-        }, {
-            "id": "guest-services-8",
+            "id": "new-and-trending-6",
             "name": "Assessment",
             "type": "Video"
         }]
